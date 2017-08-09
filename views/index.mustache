@@ -9,18 +9,18 @@
     <header>
       <h1>THINGS YOU NEED TO DO</h1>
     </header>
-    <form class="" action="/toDoList" method="post">
-      <button type="submit" name="button"></button>
+    <form class="" action="/" method="post">
+      <button type="submit" name="button">ADD ITEM</button>
       <input type="text" name="toDoAdd" placeholder="What do you want to do?" value="">
       <ul>
         <h2>You need to get these done... Better get started!</h2>
-        {{#toDoList}}
+        {{#todos}}
             <li> {{^completed}}
             <a href="/{{id}}">Click When Completed</a>
-            <span id="listAdd">{{item}}</span>
+            <span id="listAdd">{{todoitem}}</span>
             {{/completed}}
           </li>
-        {{/toDoList}}
+        {{/todos}}
       </ul>
       <ul>
         <h2>Look at all you've done!</h2>
