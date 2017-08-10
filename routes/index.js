@@ -28,7 +28,6 @@ router.post("/:id/delete", (req, res) => {
 });
 
 router.post("/:id/complete", (req, res) => {
-  // console.log("Reading here?", req.params.id);
   models.todos.findById(parseInt(req.params.id)).then(todo => {
     todo.update({ complete : true }).then(todo => {
       res.redirect("/")
@@ -36,6 +35,13 @@ router.post("/:id/complete", (req, res) => {
   })
 });
 
+router.post("/:id/redo", (req, res) => {
+  models.todos.findById(parseInt(req.params.id)).then(todo => {
+    todo.update({ complete : false }).then(todo => {
+      res.redirect("/")
+    })
+  })
+});
 
 
 
