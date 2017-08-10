@@ -3,50 +3,42 @@
   <head>
     <meta charset="utf-8">
     <title>To-Do List</title>
-      <link rel="stylesheet" href="/public/stylesheets/styles.css">
+      <link rel="stylesheet" href="/stylesheets/styles.css">
   </head>
   <body>
     <header>
       <h1>THINGS YOU NEED TO DO</h1>
     </header>
     <form class="" action="/" method="post">
-      <button type="submit" name="button">ADD ITEM</button>
-      <input type="text" name="toDoAdd" placeholder="What do you want to do?" value="">
-      <ul>
-        <h2>You need to get these done... Better get started!</h2>
-        {{#todos}}
-          {{^completed}}
-            <li>
-              <span id="listAdd">{{todoitem}}</span>
-              <form class="" action="/{{id}}/complete" method="post">
-                <button type="submit" name="button">COMPLETE</button>
-              </form>
-              <form class="" action="/{{id}}/update" method="post">
-                <button type="submit" name="button">UPDATE</button>
-              </form>
-              <form class="" action="/{{id}}/delete" method="post">
-                <button type="submit" name="button">DELETE</button>
-              </form>
-            </li>
-            <br>
-          {{/completed}}
-          {{#completed}}
-            <li>
-              <form class="" action="/{{id}}/delete" method="post">
-                <button type="submit" name="button">DELETE</button>
-              </form>
-              <span id="listAdd">{{todoitem}}</span>
-              <form class="" action="/{{id}}/update" method="post">
-                <button type="submit" name="button">UPDATE</button>
-              </form>
-            </li>
-            <br>
-          {{/completed}}
-        {{/todos}}
-      </ul>
-      <ul>
-        <h2>Look at all you've done!</h2>
-      </ul>
+      <button type="submit">ADD ITEM</button>
+      <input type="text" name="toDoAdd">
     </form>
+    <h2>You need to get these done... Better get started!</h2>
+        {{#todos}}
+          {{^complete}}
+          <ul>
+            <li>
+              <form class="" action="/{{id}}/complete" method="post"><button type="submit">COMPLETE</button></form>
+              <form class="" action="/{{id}}/update" method="post"><button type="submit">UPDATE</button></form>
+              <form class="" action="/{{id}}/delete" method="post"><button type="submit">DELETE</button></form>
+              {{todoitem}}
+            </li>
+          </ul>
+          {{/complete}}
+        {{/todos}}
+        <h2>Look at all you've done!</h2>
+        {{#todos}}
+          {{#complete}}
+            <ul>
+              <li>
+                <form class="" action="/{{id}}/delete" method="post"><button type="submit">DELETE</button></form>
+                <form class="" action="/{{id}}/update" method="post"><button type="submit">UPDATE</button></form>
+                <span id="listAdd">{{todoitem}}</span>
+              </li>
+            </ul>
+          {{/complete}}
+        {{/todos}}
+      <ul>
+      </ul>
   </body>
 </html>

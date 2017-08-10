@@ -15,8 +15,6 @@ router.post('/', (req, res) => {
   models.todos.create({
     todoitem: req.body.toDoAdd,
     complete: false,
-    createdAt: Date(),
-    updatedAt: Date()
   })
   res.render("index", { todos : req.body });
 });
@@ -28,6 +26,18 @@ router.post("/:id/delete", (req, res) => {
     })
   })
 });
+
+router.post("/:id/complete", (req, res) => {
+  // console.log("Reading here?", req.params.id);
+  models.todos.findById(parseInt(req.params.id)).then(todo => {
+    todo.update({ complete : true }).then(todo => {
+      res.redirect("/")
+    })
+  })
+});
+
+
+
 
 // need to create a form (an additional view)
 // router.post("/:id/update", (req, res) => {
