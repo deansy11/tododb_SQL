@@ -11,7 +11,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  // req.body = { button: '', toDoAdd: 'Walk the dog' }
   console.log(req.body);
   models.todos.create({
     todoitem: req.body.toDoAdd,
@@ -21,8 +20,20 @@ router.post('/', (req, res) => {
   })
   res.render("index", { todos : req.body });
 });
+//
+router.post("/:id/delete", (req, res) => {
+  models.todos.findById(parseInt(req.params.id)).then(todo => {
+    todo.destroy({ force : true }).then(todo => {
+      res.redirect("/");
+    })
+  })
+});
 
-
+// need to create a form (an additional view)
+// router.post("/:id/update", (req, res) => {
+//   models.todos.
+//
+// })
 
   // res.redirect('/');
   // .then(function(todos) {

@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert(
       "todos",
       [{
-          todoitem: 'Wake up.',
+          todoitem: 'Wake up',
           complete: true,
           createdAt: new Date(),
           updatedAt: new Date()
