@@ -11,12 +11,12 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  console.log(req.body);
   models.todos.create({
     todoitem: req.body.toDoAdd,
-    complete: false,
+    complete: false
+  }).then((todos) => {
+  res.redirect("/");
   })
-  res.render("index", { todos : req.body });
 });
 
 router.post("/:id/delete", (req, res) => {
