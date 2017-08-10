@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>To-Do List - Update</title>
+      <link rel="stylesheet" href="/stylesheets/styles.css">
+  </head>
+  <body>
+    <header>
+      <h1>Change Your Mind?</h1>
+      <h2>What do you want to do now?</h2>
+    </header>
+    <form class="" action="/{{id}}/update" method="post">
+      <button type="submit">UPDATE TODO</button>
+      <input type="text" name="updateTodo" value="{{todoitem}}">
+    </form>
+        {{#todos}}
+          <span id="listAdd">{{todoitem}}</span>
+              <form class="" action="/{{id}}/update" method="post"><button type="submit">UPDATE</button></form>
+        {{/todos}}
+  </body>
+</html>

@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
   })
   res.render("index", { todos : req.body });
 });
-//
+
 router.post("/:id/delete", (req, res) => {
   models.todos.findById(parseInt(req.params.id)).then(todo => {
     todo.destroy({ force : true }).then(todo => {
@@ -43,6 +43,20 @@ router.post("/:id/redo", (req, res) => {
   })
 });
 
+router.get("/:id/update", (req, res) => {
+  console.log(req.params.id);
+  models.todos.findById(req.params.id).then(todo => {
+      res.render("update", todo);
+  })
+})
+
+router.post("/:id/update", (req, res) => {
+  models.todos.findById(parseInt(req.params.id).then(todo => {
+    todo.update({ todoitem : req.body.updateTodo }).then(todo => {
+      res.redirect("/")
+    })
+  }))
+})
 
 
 // need to create a form (an additional view)
